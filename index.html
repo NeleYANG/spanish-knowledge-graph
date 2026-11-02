@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#e9e9e2" />
+<meta
+      name="description"
+      content="西班牙语知识图谱。以《现代西班牙语》1–6 册为骨架，把 96 个课时拆成原子知识点，按 A1–C1 等级与知识领域探索先修脉络。"
+    />
+  <title>西班牙语知识图谱</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=IBM+Plex+Sans:wght@400;500;600&family=Noto+Sans+SC:wght@400;500&family=Noto+Serif+SC:wght@400;600&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="icon" href="data:," />
+  <link rel="stylesheet" href="styles.css?v=11" />
+</head>
+<body>
+  <div id="app">
+    <div class="grain" aria-hidden="true"></div>
+
+    <section id="intro" class="intro" aria-label="学科知识图谱开场">
+      <button type="button" id="skipIntro" class="intro-skip">跳过</button>
+      <div class="plate" aria-hidden="true">
+        <p class="plate-head"><span>hablar</span><em>陈述式现在时（规则变位）</em></p>
+        <table class="conj">
+          <tbody>
+            <tr><td>yo</td><td>habl<span class="end">o</span></td></tr>
+            <tr><td>tú</td><td>habl<span class="end">as</span></td></tr>
+            <tr><td>él / ella / usted</td><td>habl<span class="end">a</span></td></tr>
+            <tr><td>nosotros</td><td>habl<span class="end">amos</span></td></tr>
+            <tr><td>vosotros</td><td>habl<span class="end">áis</span></td></tr>
+            <tr><td>ellos / ellas</td><td>habl<span class="end">an</span></td></tr>
+          </tbody>
+        </table>
+        <p class="plate-note">这张表在 A1.1 的第 3 个课时里出现。它向上接着 12 个用法，向下分出 7 个时态——每一个都在图里有一个位置。</p>
+      </div>
+      <div class="cosmic-copy">
+        <div class="cosmic-kicker"><i></i><span id="introKicker">教材：现代西班牙语 1–6 册</span></div>
+        <h2 class="cosmic-title">
+          <span class="line-a">把《现代西班牙语》</span>
+          <span class="line-b">摊开成一张网。</span>
+        </h2>
+        <p class="cosmic-sub" id="introSub">264 个知识点按 A1.1 到 C1.2 排好先后。图上颜色就是它所在的级别，谁必须在前，一条线说清。</p>
+        <div class="cosmic-stats" id="introCounts">
+          <div class="stat-tile">
+            <span class="stat-key">ATOM NODES</span>
+            <strong class="stat-num v-gold">—</strong>
+            <span class="stat-zh">原子知识点</span>
+          </div>
+          <div class="stat-tile">
+            <span class="stat-key">PREREQ EDGES</span>
+            <strong class="stat-num v-teal">—</strong>
+            <span class="stat-zh">先修关系</span>
+          </div>
+        </div>
+        <div class="cosmic-actions">
+          <button type="button" id="introEnter" class="cta cta-primary">打开图谱</button>
+          <button type="button" id="introDemo" class="cta cta-ghost">看一段路径</button>
+        </div>
+      </div>
+      <div class="cosmic-foot">
+        <span>《现代西班牙语》1–6 册　96 课时　264 个知识点</span>
+        <span>按回车进入</span>
+      </div>
+      <div class="intro-progress" aria-hidden="true"><i></i></div>
+    </section>
+
+    <header class="topbar">
+      <div class="topbar-left">
+        <a class="brand" href="#" aria-label="知识图谱首页">
+          <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="brand-name">西语知识图谱</span>
+        </a>
+        <div class="subject-switch" role="tablist" aria-label="学科">
+          <button type="button" data-subject="spanish" class="on" role="tab" aria-selected="true"><i aria-hidden="true"></i>西班牙语</button>
+        </div>
+      </div>
+
+      <div class="search-wrap">
+        <span class="search-icon" aria-hidden="true"></span>
+        <input
+          type="search"
+          id="search"
+          placeholder="搜索一个西班牙语知识点…"
+          autocomplete="off"
+          aria-label="搜索知识主题"
+        />
+        <kbd>回车</kbd>
+        <ul id="searchSuggest" class="search-suggest" role="listbox" aria-label="搜索候选" hidden></ul>
+      </div>
+
+      <div class="top-actions">
+        <button type="button" id="structureBtn" class="top-action" aria-label="打开知识结构">
+          <span aria-hidden="true">☰</span> 知识结构
+        </button>
+        <button type="button" id="demoBtn" class="top-action" aria-label="开始自动演示">
+          <span aria-hidden="true">▶</span> 自动演示
+        </button>
+        <button type="button" id="fullscreenBtn" class="icon-action" aria-label="进入全屏" title="进入全屏">⛶</button>
+        <div class="status-pill">
+          <span class="live-dot" aria-hidden="true"></span>
+          <span id="status">正在载入知识点…</span>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <p class="eyebrow"><span></span> <span id="eyebrowText">欧标 CEFR A1.1–C1.2，配《现代西班牙语》1–6 册</span></p>
+        <h1 id="hero-title">每个知识点<br />都是从别处长出来的。</h1>
+        <p class="hero-copy" id="heroCopy">
+          课时被拆解为原子知识点。<br />
+          让教材中的知识脉络，从此清晰可见。
+        </p>
+        <div class="hero-stats" id="heroStats" aria-label="图谱数据摘要">
+          <div><strong>—</strong><span>原子知识点</span></div>
+          <div><strong>—</strong><span>先修关系</span></div>
+          <div><strong>—</strong><span>课时数</span></div>
+        </div>
+      </section>
+
+      <div id="graph" aria-label="三维学习知识图谱"></div>
+
+      <div id="chainBar" class="chain-bar" hidden aria-label="知识链路径">
+        <span class="chain-kicker">知识链</span>
+        <div class="chain-track" id="chainTrack"></div>
+      </div>
+
+      <section class="subject-dock glass" aria-label="知识领域筛选">
+        <div class="dock-heading">
+          <div>
+            <span class="dock-kicker">按领域探索</span>
+            <strong>知识领域</strong>
+          </div>
+          <button type="button" id="toggleAll">显示全部</button>
+        </div>
+        <div class="module-filter" id="moduleFilter" hidden>
+          <span class="mf-label">当前模块</span>
+          <strong id="moduleFilterText"></strong>
+          <em id="moduleFilterCount"></em>
+          <button type="button" id="moduleFilterClear" aria-label="清除模块筛选">×</button>
+        </div>
+        <div class="subjects" id="subjects"></div>
+        <button type="button" class="dock-more" id="dockStructure">查看完整知识结构 ›</button>
+      </section>
+
+      <section id="timelineDock" class="timeline-dock glass" aria-label="按 CEFR 等级筛选">
+        <div class="timeline-heading">
+          <div>
+            <span id="timelineLabel">CEFR 等级</span>
+            <strong><b id="ageValue">10</b><span id="gradeUnit"></span></strong>
+          </div>
+          <button type="button" id="agePlay" aria-label="自动播放年级成长路径">
+            <i aria-hidden="true">▶</i> 自动生长
+          </button>
+        </div>
+        <div class="timeline-control">
+          <div class="timeline-rail" aria-hidden="true"><i id="ageFill"></i></div>
+          <span id="ageAxisMarker" class="timeline-marker" aria-hidden="true"><b id="ageAxisValue">3</b></span>
+          <input
+            type="range"
+            id="ageSlider"
+            min="1"
+            max="10"
+            step="1"
+            value="10"
+            aria-label="选择 CEFR 等级"
+          />
+          <div class="timeline-ticks" id="gradeTicks" aria-hidden="true">
+            <span>A1.1</span><span>A1.2</span><span>A2.1</span><span>A2.2</span><span>B1.1</span><span>B1.2</span><span>B2.1</span><span>B2.2</span><span>C1.1</span><span>C1.2</span>
+          </div>
+        </div>
+        <div class="timeline-summary">
+          <span><b id="ageNodeCount">—</b> 个原子知识点</span>
+          <span><b id="ageLinkCount">—</b> 条先修关系</span>
+        </div>
+      </section>
+
+      <div id="demoCaption" class="demo-caption" aria-live="polite">
+        <span id="demoStep">自动演示</span>
+        <strong id="demoTitle"></strong>
+        <small id="demoMeta"></small>
+      </div>
+    </main>
+
+    <aside id="panel" class="closed glass" aria-label="知识主题详情">
+      <div class="panel-accent"></div>
+      <div class="panel-top">
+        <span class="panel-label">知识节点</span>
+        <button type="button" id="closePanel" aria-label="关闭详情">×</button>
+      </div>
+
+      <div id="panelEmpty" class="panel-empty">
+        <span class="empty-orbit"><i></i></span>
+        <strong>选择一个知识节点</strong>
+        <p>查看它从哪里来，又将通向哪里。</p>
+      </div>
+
+      <div id="panelBody" hidden>
+        <p id="meta"></p>
+        <h2 id="name"></h2>
+        <p id="desc"></p>
+
+        <section class="module-context" aria-label="所属知识模块">
+          <span class="module-kicker">所属知识模块</span>
+          <div class="module-head">
+            <span class="module-swatch" id="moduleSwatch" aria-hidden="true"></span>
+            <div class="module-title-wrap">
+              <strong id="moduleTitle"></strong>
+              <em id="moduleTitleEs"></em>
+            </div>
+            <b id="moduleCount"></b>
+          </div>
+          <p id="moduleHint"></p>
+          <div id="modulePeers" class="module-peers"></div>
+        </section>
+
+        <section class="lesson-context" aria-label="所属课时">
+          <span>所属课时</span>
+          <strong id="lessonTitle"></strong>
+          <p id="lessonPath"></p>
+          <div id="lessonTopics" class="lesson-topics"></div>
+        </section>
+
+        <div class="path-summary">
+          <span><i class="inbound"></i> 先修知识</span>
+          <span><i class="outbound"></i> 解锁知识</span>
+        </div>
+
+        <section class="detail-section prereq-section">
+          <h3>直接先修</h3>
+          <ul id="prereqs"></ul>
+        </section>
+        <section class="detail-section unlock-section">
+          <h3>可解锁主题</h3>
+          <ul id="unlocks"></ul>
+        </section>
+        <section class="detail-section evidence-section">
+          <h3>掌握证据</h3>
+          <ul id="evidence"></ul>
+        </section>
+      </div>
+    </aside>
+
+    <aside id="structure" class="structure glass" aria-label="知识结构" hidden>
+      <div class="structure-top">
+        <div>
+          
+          <strong>知识结构</strong>
+          <p id="structureMeta"></p>
+        </div>
+        <div class="structure-actions">
+          <button type="button" id="expandAll">全部展开</button>
+          <button type="button" id="closeStructure" aria-label="关闭知识结构">×</button>
+        </div>
+      </div>
+      <div id="structureList" class="structure-list"></div>
+      <div class="structure-foot">
+        <span>层级：领域 / 模块 / 知识点。点开一个模块，只看这一块。</span>
+      </div>
+    </aside>
+
+    <div id="hoverCard" class="hover-card" aria-hidden="true"></div>
+
+    <footer>
+      <span id="footerNote">西班牙语知识图谱。依欧标 CEFR 与《现代西班牙语》1–6 册梳理</span>
+      <span class="footer-line"></span>
+      <span class="edge-legend" aria-label="关系线图例">
+        <span class="edge-key hard"><i></i>必要先修</span>
+        <span class="edge-key soft"><i></i>建议先修</span>
+        <span class="edge-key association"><i></i>课时关联</span>
+        <span class="edge-key sequence"><i></i>教材顺序</span>
+      </span>
+      <a href="data/quality-report-spanish.json" target="_blank" rel="noopener">数据质量</a>
+    </footer>
+  </div>
+
+  <script src="vendor/three.min.js"></script>
+  <script src="vendor/3d-force-graph.min.js"></script>
+  <script src="taxonomy-data-spanish.js?v=f2ea2474"></script>
+    <script src="app.js?v=11"></script>
+</body>
+</html>

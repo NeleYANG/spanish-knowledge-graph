@@ -1,0 +1,18 @@
+# macOS
+.DS_Store
+
+# Node
+node_modules/
+package-lock.json
+
+# 本地环境
+.env
+*.log
+
+# 沙箱调试产物
+.probe-*.html
+.tmp-*.html
+
+# WorkBuddy 工作空间数据（本地记忆/会话，非交付物）
+.workbuddy/
+.wbapp_*.genie

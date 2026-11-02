@@ -1,0 +1,144 @@
+{
+  "version": "1.1.0",
+  "subject": "西班牙语",
+  "source": "现代西班牙语（董燕生、刘建）学生用书 1–6 册",
+  "structure": {
+    "books": 6,
+    "lessonsPerBook": 16,
+    "lessons": 96,
+    "cefrCoverage": [
+      "A1.1",
+      "A1.2",
+      "A2.1",
+      "A2.2",
+      "B1.1",
+      "B1.2",
+      "B2.1",
+      "B2.2",
+      "C1.1",
+      "C1.2"
+    ]
+  },
+  "verification": {
+    "vol1Toc": "已核对（UNIDAD 1–7 五节结构完整，UNIDAD 8/9/16 语法条目已确认）",
+    "vol2Toc": "已核对（UNIDAD 1–4 语法条目完整）",
+    "vol3Vol4LessonCount": "已核对（图书馆元数据：第3册共16课、第4册共16课）",
+    "vol5Vol6": "已核对（学生用书5 共16课；第6册目录 16 Lecciones）",
+    "lessonMapping": "语法条目到课时的逐条对位需对照实体教材复核"
+  },
+  "dataQuality": {
+    "nodesWithEvidenceAtLeast2": 264,
+    "nodesMissingReason": 0,
+    "lessonsWithOneTopic": 13,
+    "lessonsWithMultipleTopics": 83,
+    "averageTopicsPerLesson": 2.75,
+    "maxTopicsPerLesson": 8
+  },
+  "graph": {
+    "nodeCount": 264,
+    "edgeCount": 262,
+    "hardEdges": 190,
+    "softEdges": 72,
+    "danglingEndpoints": 0,
+    "selfLoops": 0,
+    "duplicatePairs": 0,
+    "acyclic": true,
+    "components": 18,
+    "roots": 53,
+    "leaves": 109,
+    "isolated": 0,
+    "maxHardOutdegree": 8,
+    "maxOutdegree": 8,
+    "orderRegressionEdges": 0,
+    "renderEdgeCount": 479,
+    "renderComponents": 1,
+    "renderIsolated": 0
+  },
+  "problems": [],
+  "centralityTop": [
+    {
+      "id": "es-g-pron-sujeto",
+      "name": "主格人称代词",
+      "domain": "语法",
+      "reachable": 55,
+      "centrality": 1.0
+    },
+    {
+      "id": "es-g-ser-pres",
+      "name": "ser 的陈述式现在时变位",
+      "domain": "语法",
+      "reachable": 54,
+      "centrality": 0.981818
+    },
+    {
+      "id": "es-g-v1-pres",
+      "name": "第一变位 -ar 动词现在时规则变位",
+      "domain": "语法",
+      "reachable": 46,
+      "centrality": 0.836364
+    },
+    {
+      "id": "es-g-v2-pres",
+      "name": "第二变位 -er 动词现在时变位",
+      "domain": "语法",
+      "reachable": 29,
+      "centrality": 0.527273
+    },
+    {
+      "id": "es-g-v3-pres",
+      "name": "第三变位 -ir 动词现在时变位",
+      "domain": "语法",
+      "reachable": 28,
+      "centrality": 0.509091
+    },
+    {
+      "id": "es-g-subj-presente",
+      "name": "虚拟式现在时的构成",
+      "domain": "语法",
+      "reachable": 25,
+      "centrality": 0.454545
+    },
+    {
+      "id": "es-g-preterito-regular",
+      "name": "简单过去时规则变位 -ar/-er/-ir",
+      "domain": "语法",
+      "reachable": 19,
+      "centrality": 0.345455
+    },
+    {
+      "id": "es-g-pret-indef-1",
+      "name": "陈述式简单过去时（一）：规则变位",
+      "domain": "语法",
+      "reachable": 15,
+      "centrality": 0.272727
+    },
+    {
+      "id": "es-g-valorar",
+      "name": "评价句式 me parece que / es importante",
+      "domain": "语法",
+      "reachable": 14,
+      "centrality": 0.254545
+    },
+    {
+      "id": "es-g-pret-indef-2",
+      "name": "简单过去时不规则动词",
+      "domain": "语法",
+      "reachable": 13,
+      "centrality": 0.236364
+    },
+    {
+      "id": "es-g-relativo-que",
+      "name": "关系代词 que 引导定语从句",
+      "domain": "语法",
+      "reachable": 13,
+      "centrality": 0.236364
+    },
+    {
+      "id": "es-g-nombre",
+      "name": "名词的性与数：普通名词与专有名词",
+      "domain": "语法",
+      "reachable": 12,
+      "centrality": 0.218182
+    }
+  ]
+}
